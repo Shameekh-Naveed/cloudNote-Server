@@ -4,6 +4,9 @@ var cors = require('cors')
 
 connectToMongo();
 
+// console.log(process.env.REACT_APP_mongoURI)
+
+
 const app = express();
 const port = 5000;
 
@@ -19,6 +22,6 @@ app.use("/api/notes", require("./routes/notes"));
 //   res.send('Hello Worlds!')
 // })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`);
 });

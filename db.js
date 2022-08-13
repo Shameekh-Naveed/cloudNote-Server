@@ -1,23 +1,25 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-const mongoURI =
-  "mongodb+srv://shameekh:xZ7i4yLi9FDWjSG@cluster0.tepq9bp.mongodb.net/?retryWrites=true&w=majority";
+
 
 const connectToMongo = () => {
   mongoose.connect(
-    mongoURI,
+    process.env.REACT_APP_mongoURI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
     () => {
       console.log("connected to mongo successfully");
+      
     }
   );
 };
 
 const db = mongoose.connection;
 db.once("open", (_) => {
-  console.log("Database connected:", mongoURI);
+  console.log("Database connected:");
+  
 });
 
 db.on("error", (err) => {
